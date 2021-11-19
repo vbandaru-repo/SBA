@@ -33,6 +33,9 @@ public class TimeUtil extends BaseTestScript{
 	public WebElement getEmailSubject(Calendar cal)
 	{
 		String TimeStamp = getFormattedDateTime(cal, "MM/dd/yy hh:mm aa").toLowerCase().replace("pm", "p.m.").replace("am", "a.m.");
+		String hours = TimeStamp.substring(9,10);
+		if(hours.equals("0"))
+			TimeStamp = TimeStamp.replace(TimeStamp.substring(9,11)+":", TimeStamp.substring(10,11)+":");
 		List<WebElement> emailSubjectList= driver.findElements(By.xpath("//td[text()='"+TimeStamp+"']/parent::tr/td[2]"));
 		if(emailSubjectList.size()==1)
 		{
@@ -44,6 +47,9 @@ public class TimeUtil extends BaseTestScript{
 			System.out.println("Trying by adding 1 minute to Time Stamp: " + TimeStamp);
 			cal.add(Calendar.MINUTE, 1);
 			TimeStamp = getFormattedDateTime(cal, "MM/dd/yy hh:mm aa").toLowerCase().replace("pm", "p.m.").replace("am", "a.m.");
+			hours = TimeStamp.substring(9,10);
+			if(hours.equals("0"))
+				TimeStamp = TimeStamp.replace(TimeStamp.substring(9,11)+":", TimeStamp.substring(10,11)+":");
 			emailSubjectList= driver.findElements(By.xpath("//td[text()='"+TimeStamp+"']/parent::tr/td[2]"));
 			if(emailSubjectList.size()==1)
 			{
