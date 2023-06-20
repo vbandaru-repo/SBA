@@ -1,0 +1,27 @@
+package com.abs.common;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+
+import com.abs.common.DataUtil;
+
+public class TestStartup {
+	
+	public static void main(String args[]) throws IOException, EncryptedDocumentException, InvalidFormatException
+	{
+
+		TestDataUtil dataUtil = new TestDataUtil();
+		LinkedHashMap<Integer,LinkedHashMap<String, String>> tableMap = dataUtil.readMultiTestData("Test_002", "C:\\Bala\\TestData.xls", "Sheet1");
+		System.out.println(tableMap);
+	}
+}
+
+
